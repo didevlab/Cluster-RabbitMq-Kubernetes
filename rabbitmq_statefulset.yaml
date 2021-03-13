@@ -116,13 +116,13 @@ spec:
           mountPath: "/var/lib/rabbitmq/mnesia"
         env:
         - name: RABBITMQ_DEFAULT_PASS
-          value: 'Qwert123@'        
+          value: 'youpass'        
         - name: RABBITMQ_DEFAULT_USER
-          value: 'rogue'        
+          value: 'youruser'        
         - name: RABBITMQ_ERLANG_COOKIE
-          value: '12345'
+          value: '123456'
         - name: RABBITMQ_DEFAULT_VHOST
-          value: 'rogue'
+          value: 'youruser'
         - name: RABBITMQ_USE_LONGNAME
           value: "true"
 
