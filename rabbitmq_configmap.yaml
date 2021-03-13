@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-config
+  namespace: WRITE_HERE # Place the same namespace that the application will use rabbitmq
+  labels:
+    app: rabbitmq
+    version: "3.8.8"
+    component: queue
+    part-of: appsbots
+data:
+  enabled_plugins: |
+    [rabbitmq_peer_discovery_k8s, rabbitmq_management, rabbitmq_prometheus].
+  rabbitmq.conf: |
+    cluster_formation.peer_discovery_backend  = rabbit_peer_discovery_k8s
+    cluster_formation.node_cleanup.interval = 30
+    cluster_formation.k8s.host = kubernetes.default.svc.cluster.local
+    cluster_formation.k8s.address_type = hostname
+    cluster_partition_handling = autoheal
+    queue_master_locator=min-masters    
+    loopback_users.guest = false
+
+    vm_memory_high_watermark.absolute = 4096MB
+    
